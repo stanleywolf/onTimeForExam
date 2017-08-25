@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _15.OnTimeForExam
+{
+    class onTimeForExam
+    {
+        static void Main(string[] args)
+        {
+            int hourExam = int.Parse(Console.ReadLine());
+            int minExam = int.Parse(Console.ReadLine());
+            int hourCome = int.Parse(Console.ReadLine());
+            int minCome = int.Parse(Console.ReadLine());
+         
+            var exam = hourExam * 60 + minExam % 60;
+            var come = hourCome*60 + minCome%60;
+            var comeEarly = exam - 30;
+            var hourEarly = exam - come;
+            var hourLate = come - exam;
+            if ( comeEarly<=come&&exam>come)
+            {
+                Console.WriteLine("on time");
+                Console.WriteLine("{0:f0} minutes before the start",hourEarly);
+
+            }
+            else if (exam < come)
+            {
+                Console.WriteLine("late");
+                if (hourLate > 59)
+                {
+                    Console.WriteLine("{0:f0}:{1:00} hours after the start", Math.Abs(hourLate/60),Math.Abs(hourLate%60));
+                }
+                else if(hourLate<=59)
+                {
+                    Console.WriteLine("{0:f0} minutes after the start",Math.Abs(hourLate));
+                }
+            }
+            else if (come < comeEarly)
+            {
+                Console.WriteLine("early");
+                if (hourEarly > 59)
+                {
+                    Console.WriteLine("{0:f0}:{1:00} hours before the start", Math.Abs(hourEarly / 60), Math.Abs(hourEarly % 60));
+                }
+                else if (hourEarly <= 59)
+                {
+                    Console.WriteLine("{0:f0} minutes before the start", Math.Abs(hourLate));
+                }
+
+            }
+            else if (exam==come)
+            {
+                Console.WriteLine("on time");
+            }
+           
+        }
+    }
+}
